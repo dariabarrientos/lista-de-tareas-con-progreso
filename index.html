@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lista de Tareas con Progreso</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>Mis tareas</h1>
+
+      <section class="contador" aria-label="Resumen de tareas">
+        <p class="contador__item">Total de tareas: <strong id="total">0</strong></p>
+        <p class="contador__item">Completadas: <strong id="completadas">0</strong></p>
+        <p class="contador__item">Pendientes: <strong id="pendientes">0</strong></p>
+      </section>
+
+      <div class="progreso" role="progressbar" aria-label="Progreso de tareas completadas"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progreso">
+        <div class="progreso__barra" id="progreso-barra"></div>
+      </div>
+      <p class="progreso__texto" id="progreso-texto">0% completado</p>
+    </header>
+
+    <form class="formulario" id="formulario" novalidate>
+      <label class="visually-hidden" for="nueva-tarea">Nueva tarea</label>
+      <input type="text" id="nueva-tarea" placeholder="Escribe una tarea..." autocomplete="off">
+      <button type="submit">Agregar tarea</button>
+    </form>
+    <p class="error" id="error" role="alert" hidden>Escribe una tarea antes de agregarla.</p>
+
+    <ul class="lista" id="lista"></ul>
+    <p class="vacio" id="vacio">Aún no tienes tareas. Agrega la primera arriba.</p>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

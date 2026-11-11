@@ -1,0 +1,144 @@
+/* ===== Base (mobile first) ===== */
+:root {
+  --fondo: #fdeef6;
+  --superficie: #ffffff;
+  --texto: #4a3552;
+  --texto-suave: #8a7094;
+  --primario: #a45bc4;
+  --primario-oscuro: #8a45a8;
+  --peligro: #cc3a73;
+  --completada-fondo: #e9defa;
+  --completada-texto: #5b3f87;
+  --borde: #f0d5e8;
+  --radio: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  color: var(--texto);
+  background: linear-gradient(180deg, #fdeef6, #efe6fb) fixed;
+}
+
+.app {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1 { margin: 0 0 1rem; font-size: 1.75rem; }
+
+/* ===== Contador y progreso ===== */
+.contador {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+.contador__item { margin: 0; color: var(--texto-suave); }
+.contador__item strong { color: var(--texto); }
+
+.progreso {
+  margin-top: 0.75rem;
+  height: 0.75rem;
+  background: var(--borde);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progreso__barra {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #f29ac8, #a45bc4);
+  transition: width 0.3s ease;
+}
+.progreso__texto { margin: 0.35rem 0 0; font-size: 0.875rem; color: var(--texto-suave); }
+
+/* ===== Formulario ===== */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0.5rem;
+}
+.formulario input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+.error { margin: 0 0 0.5rem; color: var(--peligro); font-size: 0.9rem; }
+
+button {
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primario);
+  border: 0;
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+button:hover { background: var(--primario-oscuro); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+:focus-visible { outline: 3px solid #7b4fd1; outline-offset: 2px; }
+
+/* ===== Lista ===== */
+.lista { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+
+.tarea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 5px solid var(--primario);
+  border-radius: var(--radio);
+}
+.tarea__texto { margin: 0; overflow-wrap: anywhere; }
+.tarea__acciones { display: flex; gap: 0.5rem; }
+.tarea__acciones button { flex: 1; }
+
+.btn-eliminar { background: var(--peligro); }
+.btn-eliminar:hover { background: #a82c5b; }
+
+/* Tarea completada */
+.tarea--completada {
+  background: var(--completada-fondo);
+  border-left-color: #9b7be0;
+}
+.tarea--completada .tarea__texto {
+  text-decoration: line-through;
+  color: var(--completada-texto);
+}
+
+.vacio { text-align: center; color: var(--texto-suave); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ===== Pantallas más grandes ===== */
+@media (min-width: 600px) {
+  .app { padding: 2rem 1rem; }
+  .contador { grid-template-columns: repeat(3, 1fr); text-align: center; }
+  .formulario { flex-direction: row; }
+  .formulario input { flex: 1; }
+  .tarea { flex-direction: row; align-items: center; justify-content: space-between; }
+  .tarea__acciones button { flex: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progreso__barra { transition: none; }
+}
